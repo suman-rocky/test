@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      .scroll-text {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        right: auto;
+        z-index: -1;
+        white-space: normal;
+        animation: scroll 8s linear infinite;
+        transform-origin: 0% 50%;
+      }
+
+      .scroll-text.paused {
+        animation-play-state: paused;
+      }
+
+      @keyframes scroll {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(-100%);
+        }
+      }
+    </style>
+    <main>
+      <section>
+        <div class="scroll-text">Hello welcome to my website</div>
+        <button id="toggle-animation">Toggle Animation</button>
+      </section>
+    </main>
+
+    <script>
+      const scrollText = document.querySelector(".scroll-text");
+      const toggleAnimationBtn = document.querySelector("#toggle-animation");
+
+      toggleAnimationBtn.addEventListener("click", () => {
+        if (scrollText.classList.contains("paused")) {
+          scrollText.classList.remove("paused");
+          toggleAnimationBtn.textContent = "Pause Animation";
+        } else {
+          scrollText.classList.add("paused");
+          toggleAnimationBtn.textContent = "Resume Animation";
+        }
+      });
+    </script>
+  </body>
+</html>
